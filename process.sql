@@ -170,7 +170,7 @@ WHERE started_at > ended_at
 DELETE FROM combined_tripdata23
 WHERE started_at > ended_at
 
--- Creating ‘ride_length’ column which is a difference between end time and start time. 
+-- Creating â€˜ride_lengthâ€™ column which is a difference between end time and start time. 
 ALTER TABLE combined_tripdata23
 ADD ride_length TIME;
 
@@ -185,12 +185,12 @@ select *
 from combined_tripdata23
 order by started_at desc
 
--- Deleting rows from the ‘ride_length’ column where the ride length was less than or equal to 1 minute.
+-- Deleting rows from the â€˜ride_lengthâ€™ column where the ride length was less than or equal to 1 minute.
 SELECT COUNT(*)
 FROM combined_tripdata23
 WHERE ride_length <= '00:01:00';
 
--- Also delete rows from the ‘ride_length’ column where the ride length was more than 10 hours
+-- Also delete rows from the â€˜ride_lengthâ€™ column where the ride length was more than 10 hours
 -- Checking
 SELECT ride_length
 FROM combined_tripdata23
@@ -201,7 +201,7 @@ DELETE FROM combined_tripdata23
 WHERE ride_length >= '10:01:00' --3214 rows removed
 
 
--- Creating ‘day_of_week’ column which is formatted from ‘started_at’ column as a number counting from Sunday as 1 to Saturday as 7
+-- Creating â€˜day_of_weekâ€™ column which is formatted from â€˜started_atâ€™ column as a number counting from Sunday as 1 to Saturday as 7
 
 ALTER TABLE combined_tripdata23
 ADD day_of_week INTEGER; 
@@ -209,7 +209,7 @@ ADD day_of_week INTEGER;
 UPDATE combined_tripdata23 
 SET day_of_week = DATEPART(WEEKDAY, started_at);
 
--- This query checks the count of rows that have missing values in one or more of the specified columns, with the alias ‘missing_values’
+-- This query checks the count of rows that have missing values in one or more of the specified columns, with the alias â€˜missing_valuesâ€™
 SELECT
   COUNT(*) - COUNT(CASE
     WHEN ride_id IS NOT NULL
